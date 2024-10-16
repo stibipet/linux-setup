@@ -97,7 +97,7 @@ while true; do
     # updated new plugins and clean old plugins
     /usr/bin/vim -E -c "let g:user_mode=1" -c "so $APP_PATH/dotvimrc" -c "PlugInstall" -c "wqa" || echo "It normally returns >0"
 
-    if [-z "$NUMBAT" ]; then
+    if [ -z "$NUMBAT" ]; then
       default=y
       while true; do
         if [[ "$unattended" == "1" ]]
