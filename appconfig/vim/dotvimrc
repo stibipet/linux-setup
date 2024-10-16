@@ -120,8 +120,8 @@ if g:user_mode == "1"
   " automatic code completion for C++ and more
   " EPIGEN_DEL_BLOCK_VIKTOR_BIGBOX {
   if has('unix')
-    let l:os_release = system('grep "VERSION_ID" /etc/os-release | cut -d "=" -f2 | tr -d "\n\" "')
-    if l:os_release == "24.04"
+    let g:os_release = system('grep "VERSION_ID" /etc/os-release | cut -d "=" -f2 | tr -d "\n\" "')
+    if g:os_release == "24.04"
       Plug 'ycm-core/YouCompleteMe', { 'commit': '35d1882', 'do': './install.py --clangd-completer' }
     else
       Plug 'ycm-core/YouCompleteMe', { 'commit': '7c4d053', 'do': './install.py --clangd-completer' }

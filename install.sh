@@ -125,12 +125,8 @@ fi
 # install VIMIV
 ! $docker && bash $APPCONFIG_PATH/vimiv/install.sh $subinstall_params
 
-if [ -n "$NUMBAT" ]; then
-  echo "Not installing Silver Searcher (needs updating for 24.04)"
-else
-  # install SILVER SEARCHER (ag)
-  bash $APPCONFIG_PATH/silver_searcher/install.sh $subinstall_params
-fi
+# install SILVER SEARCHER (ag)
+bash $APPCONFIG_PATH/silver_searcher/install.sh $subinstall_params
 
 # setup modified keyboard rules
 ! $docker && bash $APPCONFIG_PATH/keyboard/install.sh $subinstall_params
@@ -174,7 +170,9 @@ elif [ -x "$(whereis vim | awk '{print $2}')" ]; then
 fi
 
 # this caused some problems once, but where?
-$VIM_BIN $HEADLESS -E -s -c "%g/running interactively/norm dap" -c "wqa" -- ~/.bashrc
+if [ -z "$NUMBAT" ]; then
+  $VIM_BIN $HEADLESS -E -s -c "%g/running interactively/norm dap" -c "wqa" -- ~/.bashrc
+fi
 
 #############################################
 # adding GIT_PATH variable to .bashrc

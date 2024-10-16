@@ -9,6 +9,10 @@ trap 'echo "$0: \"${last_command}\" command failed with exit code $?"' ERR
 APP_PATH=`dirname "$0"`
 APP_PATH=`( cd "$APP_PATH" && pwd )`
 
+numbat_ver="24.04"
+lsb=`lsb_release -r | awk '{ print $2 }'`
+[ "$lsb" = "$numbat_ver" ] && export NUMBAT=1
+
 unattended=0
 subinstall_params=""
 for param in "$@"
@@ -36,12 +40,16 @@ while true; do
 
     toilet Installing silver searcher
 
-    sudo apt-get -y install automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
+    if [ -n "$NUMBAT" ]; then
+      sudo apt-get -y install silversearcher-ag
+    else
+      sudo apt-get -y install automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 
-    # instal tmux
-    cd $APP_PATH/../../submodules/the_silver_searcher
-    ./build.sh
-    sudo make install
+      # instal tmux
+      cd $APP_PATH/../../submodules/the_silver_searcher
+      ./build.sh
+      sudo make install
+    fi
 
     break
   elif [[ $response =~ ^(n|N)=$ ]]
