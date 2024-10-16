@@ -76,7 +76,7 @@ while true; do
     make
     sudo make install
 
-    # light doesn't compile on NUMBAT, just skip it for not
+    # light doesn't compile on NUMBAT, just skip it for now
     if [ -n "$NUMBAT" ]; then
       echo "Not installing light on Ubuntu 24.04"
     else
@@ -103,7 +103,7 @@ while true; do
 
     # Install libpcre on 24.04
     if [ -n "$NUMBAT" ]; then
-      sudo apt install libpcre3-dev
+      sudo apt-get -y install libpcre3-dev
     fi
     # Disabling sanitizers is important for release versions!
     # The prefix and sysconfdir are, obviously, dependent on the distribution.
@@ -169,8 +169,11 @@ while true; do
     mkdir -p ~/.config/fontconfig
     ln -sf $APP_PATH/fonts.conf ~/.config/fontconfig/fonts.conf
 
+    # install picom
+    bash $APP_PATH/../picom/install.sh
+
     # install useful gui utils
-    sudo apt-get -y install thunar rofi compton systemd
+    sudo apt-get -y install thunar rofi systemd
 
     $APP_PATH/make_launchers.sh $APP_PATH/../../scripts
 

@@ -213,8 +213,8 @@ URxvt.foreground: #dddddd
 ! { PETR
 
 ! EPIGEN_ADD_BLOCK_PETR {
-! URxvt.background: rgba:0AC0/0AC0/0AC0/DDDD
-! URxvt.foreground: #dddddd
+! URxvt.background: rgba:0AC0/0AC0/0AC0/DDCC
+! URxvt.foreground: #eaeaea
 ! EPIGEN_ADD_BLOCK_PETR }
 
 ! }

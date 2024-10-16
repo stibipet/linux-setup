@@ -42,7 +42,7 @@ while true; do
 
     # install prerequisities
     if [ -n "$NUMBAT" ]; then
-      sudo apt-get install pdf-presenter-console
+      sudo apt-get -y install pdf-presenter-console
     else
       sudo apt-get -y install cmake valac libgee-0.8-dev libpoppler-glib-dev \
       libgtk-3-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
